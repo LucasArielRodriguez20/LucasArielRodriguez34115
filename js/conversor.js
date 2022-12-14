@@ -1,55 +1,39 @@
-const valorEuroBlue=344;
-const valorDolarBlue=300;
-const valorLibraBlue=320;
-let flag="si";
-alert("Bienvenido al sistema de cotizaciones \nPara su conocimiento el sistema trabaja solo con conversiones de pesos a Libras,Euros y Dolares (incluyendo sus valores en blue)");
-while(flag.toLocaleLowerCase().split(" ").join("")=="si"){ 
-let valorPesos= prompt("Ingrese el monto en pesos que quisiera convertir");
-let nombreDeMoneda= prompt("Ingrese el tipo de moneda al que quiera cambiar");
-    switch (nombreDeMoneda.toLocaleLowerCase().split(" ").join("")){
-        case "euro":
-            alert("el resultado en " + nombreDeMoneda + "s" + " es " + valorConvertido(valorPesos , blueToNormal("euro")));
-            break;
-        case "dolar":
-            alert("el resultado en " + nombreDeMoneda + "s" + " es " + valorConvertido(valorPesos , blueToNormal("dolar")));
-            break;
-        case "libra":
-            alert("el resultado en " + nombreDeMoneda + "s" + " es " + valorConvertido(valorPesos , blueToNormal("libra")));
-            break;
-        case  "euroblue":
-            alert("el resultado en " + nombreDeMoneda + " es " + valorConvertido(valorPesos , blueToNormal("euro blue")));
-            break;
-        case "dolarblue":
-            alert("el resultado en " + nombreDeMoneda + " es " + valorConvertido(valorPesos , blueToNormal("dolar blue")));
-            break;
-        case "librablue":
-            alert("el resultado en " + nombreDeMoneda + " es " + valorConvertido(valorPesos , blueToNormal("libra blue")));
-            break;
-        default:
-            alert("El tipo de moneda ingresado es desconocido porfavor vuelva a intentarlo");
-            flag="si"
+class MonedasDeCambio{
+    constructor(ValorInit,Nombre){
+        this.valorEnPesos=ValorInit;
+        this.name=Nombre;
     }
-flag =prompt("¿Desea realizar otra conversión?");
+    valorEnPesos;
+    name;
+    convertirAPesos(Valor){
+        return (Valor*(this.valorEnPesos)).toFixed(3);
+    };
+    convertirAMimoneda(Valor){
+        return (Valor/(this.valorEnPesos)).toFixed(3);
+    };
 }
-alert("Muchas gracias por usar el sistema, vuelva pronto.");
-function blueToNormal(nombreDeMoneda){
-    switch (nombreDeMoneda.toLocaleLowerCase()){
-        case "euro":
-            return valorEuroBlue*0.8;
-        case "dolar":
-            return valorDolarBlue*0.8;
-        case "libra":
-            return valorLibraBlue*0.8;
-        case "euro blue":
-            return valorEuroBlue;
-        case "dolar blue":
-            return valorDolarBlue;
-        case "libra blue":
-            return valorLibraBlue;
-        default:
-            alert("Error 404");
+const euroblue = new MonedasDeCambio(344,"euroblue");
+const euro = new MonedasDeCambio(344*0.8,"euro");
+const dolarblue=new MonedasDeCambio(300,"dolarblue");
+const dolar=new MonedasDeCambio(300*0.8,"dolar");
+const librablue=new MonedasDeCambio(320,"librablue");
+const libra=new MonedasDeCambio(320*0.8,"libras");
+const pesos =new MonedasDeCambio(1,"pesos");
+var listaDeMonedas=[euroblue,euro,dolar,dolarblue,librablue,libra,pesos];
+var boton = document.getElementById("convertir");
+boton.addEventListener("click",cambio);
+function cambio(){
+    var monedaACambiar=document.getElementById("monedaACambiar").value.toLowerCase();
+    var valorDeMonedaACambiar=document.getElementById("montoACambiar").value;
+    var monedaDestino=document.getElementById("monedaDestino").value.toLowerCase();
+    var valorFinal=document.getElementById("montoCambiado");
+    if(valorDeMonedaACambiar<0){
+        alert("valor ingresado fuera de rango");
+        document.getElementById("montoACambiar").value=0;
     }
-}
-function valorConvertido(valorPesos,dividendo){
-    return valorPesos/dividendo;
+    else{
+        let objeto =listaDeMonedas.find(elemento => elemento.name == monedaDestino);
+        let objeto2 =listaDeMonedas.find(elemento => elemento.name == monedaACambiar);
+        valorFinal.value = objeto.convertirAMimoneda(objeto2.convertirAPesos(valorDeMonedaACambiar));
+    } 
 }

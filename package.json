@@ -1,0 +1,28 @@
+{
+  "name": "preentrega2rodriguezariellucas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass",
+    "sass:watch": "sass --watch scss/main.scss css/main.css",
+    "purge": "purgecss --css ./css/*.css --content *.html --output ./src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LucasArielRodriguez20"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LucasArielRodriguez20/issues"
+  },
+  "homepage": "https://github.com/LucasArielRodriguez20",
+  "dependencies": {
+    "sass": "^1.55.0"
+  },
+  "devDependencies": {
+    "purgecss": "^5.0.0"
+  }
+}

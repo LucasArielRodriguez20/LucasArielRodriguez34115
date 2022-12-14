@@ -1,0 +1,53 @@
+.inputText {
+  display: flex;
+}
+
+.labelInput {
+  display: flex;
+}
+
+.bg-black {
+  background-color: #000000;
+}
+
+.bg-lightBlack {
+  background-color: #302430;
+}
+
+.font-color {
+  color: #FFFFFF;
+}
+
+.title-nav {
+  margin-right: 4vw;
+}
+
+.padding-around {
+  padding: 4vw;
+}
+
+.form-div {
+  width: 40vw;
+  margin: auto;
+}
+
+.form-btn {
+  width: 24vw;
+  margin: auto;
+  height: 3vw;
+}
+
+.footer-measures {
+  height: 15.6vw;
+}
+
+.mainClass {
+  height: auto;
+}
+
+.formClass {
+  width: 60%;
+  margin: auto;
+}
+
+/*# sourceMappingURL=main.css.map */
